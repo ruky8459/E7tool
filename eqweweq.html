@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="block" v-for="(product, index) in products">
+        <h3>{{product.name}}</h3>
+        <p>Desc: {{product.description}}</p>
+        <p>Price: £{{product.price}}</p>
+        <h3>Rating</h3>
+        <form @submit.prevent="ratingAdd(product, index)">
+        <input type="radio" value = "1" :name = "'ratings1-' + index" v-model="ratingNum[index]">1
+        <input type="radio" value = "2" :name = "'ratings2-' + index" v-model="ratingNum[index]">2
+        <input type="radio" value = "3" :name = "'ratings2-' + index" v-model="ratingNum[index]">3
+        <input type="radio" value = "4" :name = "'ratings4-' + index" v-model="ratingNum[index]">4
+        <input type="radio" value = "5" :name = "'ratings5-' + index" v-model="ratingNum[index]">5
+        <input type="submit">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                ratingNum: [0, 0],
+                loggedUser: {
+                    email: 'test@test'
+                },
+                products: [
+                    {
+                        name: 'Product A',
+                        description: 'desc A',
+                        price: 2,
+                    },
+                    {
+                        name: 'Product B',
+                        description: 'desc B',
+                        price: 3,
+                    }
+                ]
+            },
+            methods:
+            {
+                ratingAdd: function (product, index) {
+                    let newRating = { 
+                        "name": product.name, 
+                        "description": product.description, 
+                        "price": product.price, 
+                        "email": this.loggedUser.email, 
+                        "rating": this.ratingNum[index] 
+                    };
+                    console.log(newRating);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
