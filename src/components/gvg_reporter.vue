@@ -63,60 +63,6 @@
                         </label>
                     </div>
                 </div>
-                
-                <select name="" id="" v-model="artifact">
-                    <option value="">選擇神器</option>
-                    <option value="勇證">勇證</option>
-                    <option value="團結"><img src="https://epic7x.com/wp-content/themes/epic-seven/assets/img/Ranger.png" alt="">團結</option>
-                    <option value="號角">號角</option>
-                    <option value="希望">希望</option>
-                    <option value="指標">指標</option>
-                    <option value="畫像">畫像</option>
-                    <option value="音樂盒">音樂盒</option>
-                    <option value="板甲">板甲</option>
-                    <option value="面具">面具</option>
-                    <option value="彗星">彗星</option>
-                    <option value="席格">席格</option>
-                    <option value="信賴">信賴</option>
-                    <option value="剪刀">剪刀</option>
-                    <option value="獎盃">獎盃</option>
-                    <option value="開闢">開闢</option>
-                    <option value="正義">正義</option>
-                    <option value="分傷">分傷</option>
-                    <option value="金剛">金剛</option>
-                    <option value="王誕">王誕</option>
-                    <option value="寶劍">寶劍</option>
-                    <option value="堡壘">堡壘</option>
-                    <option value="犧牲">犧牲</option>
-                    <option value="雙子">雙子</option>
-                    <option value="提籃">提籃</option>
-                    <option value="塵埃">塵埃</option>
-                    <option value="雷天">雷天</option>
-                    <option value="無為">無為</option>
-                    <option value="皎月">皎月</option>
-                    <option value="銀光">銀光</option>
-                    <option value="哈刀">哈刀</option>
-                    <option value="飲料">飲料</option>
-                    <option value="破防">破防</option>
-                    <option value="引導">引導</option>
-                    <option value="血玉">血玉</option>
-                    <option value="漂浮">漂浮</option>
-                    <option value="深淵">深淵</option>
-                    <option value="提琴">提琴</option>
-                    <option value="童話">童話</option>
-                    <option value="知識種子">知識種子</option>
-                    <option value="歌姬">歌姬</option>
-                    <option value="波濤">波濤</option>
-                    <option value="飆車">飆車</option>
-                    <option value="靈藥">靈藥</option>
-                    <option value="冰封">冰封</option>
-                    <option value="天青">天青</option>
-                    <option value="孤兒花">孤兒花</option>
-                    <option value="手杖">手杖</option>
-                    <option value="急救包">急救包</option>
-
-                    
-                </select>
             </div>
         <h2>備註欄位</h2>
         <textarea name="" id="" cols="30" rows="2" placeholder="Inyr的暗龍有夠快，堡壘給誰、史哥劈誰、瑟琳捅誰之類的" v-model="memo"></textarea>
