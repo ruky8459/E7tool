@@ -23,7 +23,7 @@
 
         </div>
                     
-            <div class="role6" v-for=" (item, index) in roleArray " :key="item.id" :setPocketIdx="setPocketIdx(index)">
+            <div class="role6" v-for=" (item, index) in roleArray " :key="item.id">
                 <div class="section" v-if="index === 0 " >
                     <h2 >P1</h2>
                 </div>
@@ -158,7 +158,6 @@ export default {
     data() {
         
         return {
-            pocketIdx: 0,
             artifact:"",
             guildName: "",
             date: "",
@@ -240,9 +239,6 @@ export default {
         },
         dataFromChild: function(data, idx){
             this.testChild[idx].pocket = data;
-        },
-        setPocketIdx: function(idx) {
-            this.pocketIdx = idx;
         },
     },
     components:{
