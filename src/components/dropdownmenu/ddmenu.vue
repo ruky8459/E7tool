@@ -24,11 +24,13 @@
 
 <script>
 export default {
+    props: ['roleIdx'],
     data() {
         return {
             searchQuery:'',
             selectedItem:null,
             isVisible:false,
+            roleIdx: this.roleIdx,
             items: [{
                     img: "https://emoji.gg/assets/emoji/1705-tanjiro-hmp.png",
                     artName: "不重要",
@@ -97,7 +99,7 @@ export default {
             this.selectedItem = item;
             this.isVisible = false;
             this.searchQuery = '';
-            this.$emit('childData',this.selectedItem.artName);
+            this.$emit('childData',this.selectedItem.artName, this.roleIdx);
         },
     }
 };

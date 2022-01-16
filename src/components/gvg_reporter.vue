@@ -23,7 +23,7 @@
 
         </div>
                     
-            <div class="role6" v-for=" (item, index) in roleArray " :key="item.id" >
+            <div class="role6" v-for=" (item, index) in roleArray " :key="item.id" :setPocketIdx="setPocketIdx(index)">
                 <div class="section" v-if="index === 0 " >
                     <h2 >P1</h2>
                 </div>
@@ -35,7 +35,7 @@
                     <input type="number" placeholder="速度" min="100" max="400" step="1" maxlength="3" v-model="roleArray[index].speed">
                     <input type="number" placeholder="血量(k)" min="5" max="50" step="0.1"  maxlength="4" v-model="roleArray[index].hp">
                     <!-- <input type="text" placeholder="神器" v-model="roleArray[index].artic"> -->
-                    <ddmenu v-on:childData="dataFromChild(data,index)" />
+                    <ddmenu v-on:childData="dataFromChild" :roleIdx="index" />
 
 
                     <!-- 四選一 -->
@@ -158,6 +158,7 @@ export default {
     data() {
         
         return {
+            pocketIdx: 0,
             artifact:"",
             guildName: "",
             date: "",
@@ -237,9 +238,12 @@ export default {
             Object.assign(this.$data, this.$options.data())
             alert('表單已重置，一夜回到解放前')
         },
-        dataFromChild: function(data,index){
-            this.testChild[index].pocket = data;
-        }
+        dataFromChild: function(data, idx){
+            this.testChild[idx].pocket = data;
+        },
+        setPocketIdx: function(idx) {
+            this.pocketIdx = idx;
+        },
     },
     components:{
         ddmenu
