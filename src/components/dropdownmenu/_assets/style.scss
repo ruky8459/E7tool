@@ -27,11 +27,17 @@
             }
         }
     }
-    .selected-item::after{
-        content: '+';
-        color: red;
-        font-weight: bold;
+    .dropdown-icon{
+        transition: all .3s ease-in-out;
+        &.dropdown{
+            transform: rotate(-180deg);
+        }
     }
+    // .selected-item::after{
+    //     content: '+';
+    //     color: red;
+    //     font-weight: bold;
+    // }
     .hide{
         display: none;
     }

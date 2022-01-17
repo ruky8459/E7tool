@@ -4,6 +4,7 @@
             <div v-if="artifact!==null" class="flex-cc" ><img :src="artifact.img" alt="">{{artifact.name}}</div>
             
             <span v-else class="flex-cc">選擇神器</span>
+            <svg  :class="isVisible ? 'dropdown':''" class="dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z"/></svg>
         </div>
         <div class="dropdown-popover" v-if="isVisible" >
             <input type="text" name="" id="" placeholder="輸入關鍵字" v-model="searchQuery" class="searchbar"/>
@@ -37,6 +38,14 @@ export default {
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "勇證",
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "團結",
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
                     name: "犧牲",
                 },
                 {
@@ -45,27 +54,47 @@ export default {
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "堡壘",
+                    name: "分傷",
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "高潔",
+                    name: "堡壘",
                 },
                 {
                     img: "../../static/img/artifactsCategory/Ranger.png",
                     name: "引導",
                 },
                 {
+                    img: "../../static/img/artifactsCategory/Ranger.png",
+                    name: "破防",
+                },
+                {
                     img: "../../static/img/artifactsCategory/Thief.png",
                     name: "提籃",
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "塵埃",
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "皎月",
                 },
                 {
                     img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
                     name: "波濤",
                 },
                 {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "飆車",
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "席格",
+                },
+                {
                     img: "../../static/img/artifactsCategory/Mage.png",
-                    name: "魂書",
+                    name: "提琴",
                 },
             ],
         };
