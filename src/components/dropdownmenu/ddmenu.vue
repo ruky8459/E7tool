@@ -25,9 +25,10 @@
 
 <script>
 export default {
-    props: ['roleIdx'],
+    props: ['roleIdx','resetCommand'],
     data() {
         return {
+            isCleaned:false,
             searchQuery:'',
             artifact:null,
             isVisible:false,
@@ -130,13 +131,19 @@ export default {
             this.searchQuery = '';
             this.$emit('childData',this.artifact.name, this.roleIndex);
         },
+    },
+    watch:{
+        resetCommand: function(){
+            console.log('Command received');
+            if(this.resetCommand !== null){
+                this.artifact = null;
+
+            }
+        }
     }
 };
 </script>
 
 <style>
 @import '_assets/style.css';
-body{
-    background: rgba(87, 211, 87, 0.671);
-}
 </style>

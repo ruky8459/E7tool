@@ -1,6 +1,6 @@
 <template>
     <div class="gvgContainer">
-        <h1>宇宙第一神遊 : 第七史詩</h1>
+        <h1>第七史詩 : 戰報產生</h1>
         <div class="subtitle">
             <input
                 type="text"
@@ -35,7 +35,7 @@
                     <input type="number" placeholder="速度" min="100" max="400" step="1" maxlength="3" v-model="roles[index].speed">
                     <input type="number" placeholder="血量(k)" min="5" max="50" step="0.1"  maxlength="4" v-model="roles[index].hp">
                     <!-- <input type="text" placeholder="神器" v-model="roles[index].artic"> -->
-                    <ddmenu v-on:childData="dataFromChild" :roleIdx="index" />
+                    <ddmenu v-on:childData="dataFromChild" :roleIdx="index" :resetCommand="resetCommand"/>
 
 
                     <!-- 四選一 -->
@@ -87,7 +87,7 @@
         
         <div class="btnArea">
             <button  @click="copyToBoard" class="btn">複製內容</button>
-            <button  @click="resetForm" class="btn">重置表單</button>
+            <button  @click="resetForm(); sendCommandToChild();" class="btn">重置表單</button>
         </div>
     </div>
 </template>
@@ -99,6 +99,7 @@ export default {
     name: "GuildWarReport",
     data() {
         return {
+            resetCommand: null,
             artifact:"",
             guildName: "",
             date: "",
@@ -175,8 +176,6 @@ export default {
             let ans = document.getElementById('resultA');
             ans.select();
             document.execCommand('copy');
-            alert('你號沒了，想不到吧')
-            alert('先別報警，我開玩笑的')
             alert('已複製內容')
         },
         resetForm: function(){
@@ -186,6 +185,11 @@ export default {
         dataFromChild: function(data, idx){
             this.roles[idx].artifact = data;
         },
+        sendCommandToChild: function(){
+            this.resetCommand = 'yes';
+            console.log('resetCommand func');
+            console.log(this.resetCommand);
+        }
     },
     components:{
         ddmenu
