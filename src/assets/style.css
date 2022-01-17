@@ -12,10 +12,10 @@ h1,h2{
     color: whitesmoke;
 }
 h1{
-    font-size: 3rem;
+    font-size: 3rem!important;
 }
 h2{
-    font-size: 2rem;
+    font-size: 2rem!important;
 }
 input {
     border-radius: .3rem;
