@@ -71,24 +71,24 @@
 ```prolog
 {{ guildName }} {{ date }} {{ playerID }}
 {{position}} Role Speed Hp[K] Artf. Note
-[P1]  {{roles[0].roleName}}  {{roles[0].speed}}    {{roles[0].hp}}  {{roles[0].artic}} {{roles[0].subSet}} {{roles[0].artifact}} {{roles[0].mainSet}}
-      {{roles[1].roleName}}  {{roles[1].speed}}    {{roles[1].hp}}  {{roles[1].artic}} {{roles[1].subSet}} {{roles[1].artifact}} {{roles[1].mainSet}} 
-      {{roles[2].roleName}}  {{roles[2].speed}}    {{roles[2].hp}}  {{roles[2].artic}} {{roles[2].subSet}} {{roles[2].artifact}} {{roles[2].mainSet}}
+[P1]  {{roles[0].roleName}}  {{roles[0].speed}}    {{roles[0].hp}}   {{roles[0].artifact}} {{roles[0].subSet}} {{roles[0].mainSet}}
+      {{roles[1].roleName}}  {{roles[1].speed}}    {{roles[1].hp}}   {{roles[1].artifact}} {{roles[1].subSet}} {{roles[1].mainSet}} 
+      {{roles[2].roleName}}  {{roles[2].speed}}    {{roles[2].hp}}   {{roles[2].artifact}} {{roles[2].subSet}} {{roles[2].mainSet}}
 
-[P2]  {{roles[3].roleName}}  {{roles[3].speed}}    {{roles[3].hp}}  {{roles[3].artic}} {{roles[3].subSet}} {{roles[3].artifact}} {{roles[3].mainSet}}
-      {{roles[4].roleName}}  {{roles[4].speed}}    {{roles[4].hp}}  {{roles[4].artic}} {{roles[4].subSet}} {{roles[4].artifact}} {{roles[4].mainSet}}
-      {{roles[5].roleName}}  {{roles[5].speed}}    {{roles[5].hp}}  {{roles[5].artic}} {{roles[5].subSet}} {{roles[5].artifact}} {{roles[5].mainSet}}
+[P2]  {{roles[3].roleName}}  {{roles[3].speed}}    {{roles[3].hp}}   {{roles[3].artifact}} {{roles[3].subSet}} {{roles[3].mainSet}}
+      {{roles[4].roleName}}  {{roles[4].speed}}    {{roles[4].hp}}   {{roles[4].artifact}} {{roles[4].subSet}} {{roles[4].mainSet}}
+      {{roles[5].roleName}}  {{roles[5].speed}}    {{roles[5].hp}}   {{roles[5].artifact}} {{roles[5].subSet}} {{roles[5].mainSet}}
 備註:
   [1]速度僅供參考   
   [2]{{memo}}
-  
 ```
         </textarea>
         
         <div class="btnArea">
-            <button  @click="copyToBoard" class="btn">複製內容</button>
-            <button  @click="resetForm(); sendCommandToChild();" class="btn">重置表單</button>
+            <button  @click="copyToBoard(); showToast('已複製內容','toast-copied');" class="btn">複製內容</button>
+            <button  @click="resetForm(); sendCommandToChild(); showToast('已清除表單','toast-reset');" class="btn">重置表單</button>
         </div>
+        <div class="toast " :class="toastState">{{toastMessage}}</div>
     </div>
 </template>
 <script>
@@ -99,8 +99,9 @@ export default {
     name: "GuildWarReport",
     data() {
         return {
-            resetCommand: null,
-            artifact:"",
+            // resetCommand: null,
+            resetCommand:[],
+            // artifact:"",
             guildName: "",
             date: "",
             playerID: "",
@@ -110,7 +111,6 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
@@ -119,7 +119,6 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
@@ -128,7 +127,6 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
@@ -136,7 +134,6 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
@@ -144,7 +141,6 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
@@ -152,14 +148,15 @@ export default {
                     roleName:"",
                     speed: "",
                     hp: "",
-                    artic: "",
                     subSet: "",
                     mainSet: "",
                     artifact: "",
                 },
             ],
             memo: "",
-            
+            toastMessage: "welcome",
+            toastState: "",
+            hideTimeout: null,
         };
     },
     methods:{
@@ -170,25 +167,35 @@ export default {
         onError: function(){
             alert('複製失敗')
             console.log('failllll');
-        },
+        },//複製textArea內容到剪貼簿
         copyToBoard: function(){
-            console.log('Hello from Vue method');
             let ans = document.getElementById('resultA');
             ans.select();
             document.execCommand('copy');
-            alert('已複製內容')
+            // alert('已複製內容')
         },
         resetForm: function(){
-            Object.assign(this.$data, this.$options.data())
-            alert('表單已重置，一夜回到解放前')
+            Object.assign(this.$data, this.$options.data());
+            // alert('表單已重置，一夜回到解放前')
+            // this.roles = this.$options.data().roles;
         },
         dataFromChild: function(data, idx){
             this.roles[idx].artifact = data;
-        },
+        },//重製組件-下拉式選單
         sendCommandToChild: function(){
-            this.resetCommand = 'yes';
-            console.log('resetCommand func');
+            // this.resetCommand = 'yes';
+            this.resetCommand.push('1');
+            console.log('reset指令送出');
             console.log(this.resetCommand);
+        },//手工toast
+        showToast: function(toastMessage,state){
+            clearTimeout(this.hideTimeout);
+            this.toastState = state;
+            this.toastMessage = toastMessage;
+            this.hideTimeout = setTimeout(() => {
+                this.toastState = "";
+
+            }, 2000);
         }
     },
     components:{
@@ -198,4 +205,28 @@ export default {
 </script>
 
 <style>
+.toast{
+    position: fixed;
+    /* top: 10vh; */
+    top: -5rem;
+    left: calc(50vw - 7rem);
+    background: #FFF;
+    line-height: 4rem;
+    height: 4rem;
+    width: 16rem;
+    border-left: 10px solid black;
+    border-radius: .3rem;
+    box-shadow: 5px 5px 5px #555;
+    transition: all .5s ease-in-out;
+}
+.toast-copied{
+    border-left: 10px solid rgb(10, 177, 10);
+    top: 10vh;
+
+}
+.toast-reset{
+    border-left: 10px solid rgb(226, 57, 6);
+    top: 10vh;
+    
+}
 </style>

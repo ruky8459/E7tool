@@ -134,10 +134,8 @@ export default {
     },
     watch:{
         resetCommand: function(){
-            console.log('Command received');
             if(this.resetCommand !== null){
                 this.artifact = null;
-
             }
         }
     }
