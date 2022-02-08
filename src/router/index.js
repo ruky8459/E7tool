@@ -8,9 +8,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/', //根目錄即初始頁面
       name: 'HelloWorld',
-      component: HelloWorld
+      component: HelloWorld,
+      redirect: 'GVG'//自動導向到GVG組件
     },
     {
         path: '/gvg',

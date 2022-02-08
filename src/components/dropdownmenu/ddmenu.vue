@@ -11,7 +11,7 @@
             <div class="listbox">
                 <span v-if="filterBySearch.length === 0" style="line-height:1.5rem; color:red; font-weight:bold;" >無匹配項目</span>
                 <div class="item flex-cc" v-for="(artifact, index) in filterBySearch" :key="artifact.id">
-                    <li class="flex-cc" @click="selectArtifacts(artifact)" >
+                    <li  @click="selectArtifacts(artifact)" >
                         <img :src="filterBySearch[index].img" alt="" />{{
                             filterBySearch[index].name
                         }}
@@ -36,66 +36,368 @@ export default {
             items: [{
                     img: "../../static/img/artifactsCategory/tanjiro.png",
                     name: "不重要",
+                    matchName:"",
+                    shortName:""
+                },//公會 通用類型
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "勇猛證據",
+                    matchName:"勇證 永正 勇猛 proof of valor",
+                    shortName:"勇證"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "勇證",
+                    name: "團結象徵",
+                    matchName:"團結 命中 symbol of unit",
+                    shortName:"團結"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "團結",
+                    name: "進攻號角",
+                    matchName:"進攻號角 ",
+                    shortName:"號角"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "犧牲",
+                    name: "希望的堡壘",
+                    matchName:"希望的堡壘 抗性",
+                    shortName:"希望"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "寶劍",
+                    name: "選擇的指標",
+                    matchName:"選擇的指標 ",
+                    shortName:"指標"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "分傷",
+                    name: "悲戀的音樂盒",
+                    matchName:"悲戀的音樂盒 ",
+                    shortName:"音樂盒"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Knight.png",
-                    name: "堡壘",
+                    name: "救援者們的畫像",
+                    matchName:"救援者們的畫像 ",
+                    shortName:"畫像"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "神聖犧牲",
+                    matchName:"神聖犧牲 復活",
+                    shortName:"犧牲"
+                },//坦克 騎士類型
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "埃布利斯的寶劍",
+                    matchName:"埃布利斯的寶劍 保健",
+                    shortName:"寶劍"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "亞烏利斯",
+                    matchName:"亞烏利斯 分商 分傷 分攤",
+                    shortName:"分傷"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "波魯迪亞的堡壘",
+                    matchName:"波魯迪亞的堡壘 堡壘 ",
+                    shortName:"堡壘"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "開闢之槍",
+                    matchName:"開闢之槍 ",
+                    shortName:"開闢"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "金剛石盾牌",
+                    matchName:"金剛石盾牌",
+                    shortName:"金剛"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Knight.png",
+                    name: "王的誕生",
+                    matchName:"王的誕生 王誕",
+                    shortName:"王誕"
+                },//射手類型
+                {
+                    img: "../../static/img/artifactsCategory/Ranger.png",
+                    name: "引導之光",
+                    matchName:"引導之光 隱身",
+                    shortName:"引導"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Ranger.png",
-                    name: "引導",
+                    name: "Miss Confile",
+                    matchName:"Miss Confile 破防",
+                    shortName:"破防"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Ranger.png",
-                    name: "破防",
+                    name: "雷茵格爾特調飲料",
+                    matchName:"雷茵格爾特調飲料",
+                    shortName:"飲料"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Ranger.png",
+                    name: "深海漂浮之心",
+                    matchName:"深海漂浮之心 浮游 炸彈",
+                    shortName:"漂浮"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Ranger.png",
+                    name: "血玉髓",
+                    matchName:"血玉髓 玉米 吸血",
+                    shortName:"血玉"
+                },//盜賊類型
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "雅莉莎提籃",
+                    matchName:"雅莉莎提籃 大公雞 GAB",
+                    shortName:"提籃"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Thief.png",
-                    name: "提籃",
+                    name: "塵埃惡魔",
+                    matchName:"塵埃惡魔",
+                    shortName:"塵埃"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Thief.png",
-                    name: "塵埃",
+                    name: "皎月夢夜",
+                    matchName:"皎月夢夜 妖刀",
+                    shortName:"皎月"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Thief.png",
-                    name: "皎月",
+                    name: "無為的引導者",
+                    matchName:"無為的引導者",
+                    shortName:"無為"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "銀光驟雨",
+                    matchName:"銀光驟雨",
+                    shortName:"銀光"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "誓言之杯",
+                    matchName:"誓言之杯",
+                    shortName:"誓言"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "雷天一劍",
+                    matchName:"雷天一劍",
+                    shortName:"雷天"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "里安娜&路西艾拉",
+                    matchName:"里安娜&路西艾拉 雙子",
+                    shortName:"雙子"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Thief.png",
+                    name: "紫色護身符",
+                    matchName:"紫色護身符",
+                    shortName:"護身符"
+                },//精靈師 補師 奶媽 類型
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "天青石",
+                    matchName:"天青石",
+                    shortName:"天青"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
-                    name: "波濤",
+                    name: "列科斯的救援",
+                    matchName:"列科斯的救援",
+                    shortName:"列科斯"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
-                    name: "飆車",
+                    name: "歌姬助陣",
+                    matchName:"歌姬助陣",
+                    shortName:"歌姬"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "孤挺花之杖",
+                    matchName:"孤挺花之杖 孤兒花",
+                    shortName:"孤挺花"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "急救包",
+                    matchName:"急救包",
+                    shortName:"急救包"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "席瑪德拉的手杖",
+                    matchName:"席瑪德拉的手杖",
+                    shortName:"手杖"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "星之豎琴",
+                    matchName:"星之豎琴",
+                    shortName:"豎琴"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "守護的冰封碎片",
+                    matchName:"守護的冰封碎片",
+                    shortName:"冰封碎片"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "波濤的祈願",
+                    matchName:"波濤的祈願",
+                    shortName:"波濤"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "瑪姬哈拉的魔法古書",
+                    matchName:"瑪姬哈拉的魔法古書 飆車 超車",
+                    shortName:"飆車"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Soul%20Weaver.png",
+                    name: "靈藥的試管",
+                    matchName:"靈藥的試管",
+                    shortName:"靈藥"
+                },//戰士類型
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "席格勒賽斯",
+                    matchName:"席格勒賽斯 吸血斧",
+                    shortName:"席格"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Warrior.png",
-                    name: "席格",
+                    name: "龍族板甲",
+                    matchName:"龍族板甲",
+                    shortName:"板甲"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "孤注一擲",
+                    matchName:"孤注一擲 硬幣 coin",
+                    shortName:"硬幣"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "抗魔面具",
+                    matchName:"抗魔面具",
+                    shortName:"面具"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "奇幻馬戲團",
+                    matchName:"奇幻馬戲團 circus",
+                    shortName:"馬戲團"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "青光彗星",
+                    matchName:"青光彗星",
+                    shortName:"青光"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "純白的信賴",
+                    matchName:"純白的信賴",
+                    shortName:"信賴"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "創造之福&破壞之頌",
+                    matchName:"創造之福&破壞之頌 剪刀",
+                    shortName:"剪刀"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "優勝者獎盃",
+                    matchName:"優勝者獎盃",
+                    shortName:"獎盃"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "地獄切割機",
+                    matchName:"地獄切割機 電鋸 hell cuter",
+                    shortName:"切割機"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Warrior.png",
+                    name: "紅焰種子",
+                    matchName:"紅焰種子 seed",
+                    shortName:"種子"
+                },//法師類型
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "改良型龍指虎",
+                    matchName:"改良型龍指虎",
+                    shortName:"指虎"
                 },
                 {
                     img: "../../static/img/artifactsCategory/Mage.png",
-                    name: "提琴",
+                    name: "精靈氣息",
+                    matchName:"精靈氣息",
+                    shortName:"精靈氣息"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "知識種子",
+                    matchName:"知識種子",
+                    shortName:"知識種子"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "深淵王冠",
+                    matchName:"深淵王冠",
+                    shortName:"深淵"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "尊嚴寶珠",
+                    matchName:"尊嚴寶珠",
+                    shortName:"尊嚴寶珠"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "惡夢的童話",
+                    matchName:"惡夢的童話",
+                    shortName:"童話"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "艾蒂嘉權杖",
+                    matchName:"艾蒂嘉權杖",
+                    shortName:"艾蒂嘉"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "為了朋友的魔法",
+                    matchName:"為了朋友的魔法 專屬 專武 女主",
+                    shortName:"專屬"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "依埃蘿小提琴",
+                    matchName:"依埃蘿小提琴",
+                    shortName:"提琴"
+                },
+                {
+                    img: "../../static/img/artifactsCategory/Mage.png",
+                    name: "席拉蓮",
+                    matchName:"席拉蓮",
+                    shortName:"席拉蓮"
                 },
             ],
         };
@@ -116,7 +418,7 @@ export default {
         },
         filterBySearch(){
             let keyword = new RegExp(this.searchQuery,'i')
-            return this.items.filter(el=>el.name.match(keyword))
+            return this.items.filter(el=>el.matchName.match(keyword))
         }
     },
     methods:{
@@ -129,7 +431,7 @@ export default {
             this.artifact = artifact;
             this.isVisible = false;
             this.searchQuery = '';
-            this.$emit('childData',this.artifact.name, this.roleIndex);
+            this.$emit('childData',this.artifact.shortName, this.roleIndex);
         },
     },
     watch:{

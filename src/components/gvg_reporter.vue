@@ -1,6 +1,6 @@
 <template>
     <div class="gvgContainer">
-        <h1>第七史詩 : 戰報產生</h1>
+        <h1 class="tittle">第七史詩 : 戰報產生</h1>
         <div class="subtitle">
             <input
                 type="text"
@@ -71,13 +71,13 @@
 ```prolog
 {{ guildName }} {{ date }} {{ playerID }}
 {{position}} Role Speed Hp[K] Artf. Note
-[P1]  {{roles[0].roleName}}  {{roles[0].speed}}    {{roles[0].hp}}   {{roles[0].artifact}} {{roles[0].subSet}} {{roles[0].mainSet}}
-      {{roles[1].roleName}}  {{roles[1].speed}}    {{roles[1].hp}}   {{roles[1].artifact}} {{roles[1].subSet}} {{roles[1].mainSet}} 
-      {{roles[2].roleName}}  {{roles[2].speed}}    {{roles[2].hp}}   {{roles[2].artifact}} {{roles[2].subSet}} {{roles[2].mainSet}}
+[P1]  {{roles[0].roleName}}  {{roles[0].speed}}   {{roles[0].hp}}   {{roles[0].artifact}} {{roles[0].subSet}} {{roles[0].mainSet}}
+      {{roles[1].roleName}}  {{roles[1].speed}}   {{roles[1].hp}}   {{roles[1].artifact}} {{roles[1].subSet}} {{roles[1].mainSet}} 
+      {{roles[2].roleName}}  {{roles[2].speed}}   {{roles[2].hp}}   {{roles[2].artifact}} {{roles[2].subSet}} {{roles[2].mainSet}}
 
-[P2]  {{roles[3].roleName}}  {{roles[3].speed}}    {{roles[3].hp}}   {{roles[3].artifact}} {{roles[3].subSet}} {{roles[3].mainSet}}
-      {{roles[4].roleName}}  {{roles[4].speed}}    {{roles[4].hp}}   {{roles[4].artifact}} {{roles[4].subSet}} {{roles[4].mainSet}}
-      {{roles[5].roleName}}  {{roles[5].speed}}    {{roles[5].hp}}   {{roles[5].artifact}} {{roles[5].subSet}} {{roles[5].mainSet}}
+[P2]  {{roles[3].roleName}}  {{roles[3].speed}}   {{roles[3].hp}}   {{roles[3].artifact}} {{roles[3].subSet}} {{roles[3].mainSet}}
+      {{roles[4].roleName}}  {{roles[4].speed}}   {{roles[4].hp}}   {{roles[4].artifact}} {{roles[4].subSet}} {{roles[4].mainSet}}
+      {{roles[5].roleName}}  {{roles[5].speed}}   {{roles[5].hp}}   {{roles[5].artifact}} {{roles[5].subSet}} {{roles[5].mainSet}}
 備註:
   [1]速度僅供參考   
   [2]{{memo}}
@@ -196,6 +196,10 @@ export default {
                 this.toastState = "";
 
             }, 2000);
+            if (state == 'toast-reset'){
+                // window.scroll(top);
+                window.scrollTo({top:0,behavior:'smooth'})
+            }
         }
     },
     components:{
@@ -209,7 +213,7 @@ export default {
     position: fixed;
     /* top: 10vh; */
     top: -5rem;
-    left: calc(50vw - 7rem);
+    left: calc(50vw - 8rem);
     background: #FFF;
     line-height: 4rem;
     height: 4rem;

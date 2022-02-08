@@ -42,6 +42,10 @@ img{
     align-items: center;
     padding: 3rem;
 }
+.tittle{
+    margin: 2rem 0;
+    font-weight: 800;
+}
 .subtitle{
     display: flex;
     flex-wrap: wrap;
@@ -112,7 +116,7 @@ img{
 }
 .btn:hover{
 
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
 }
 .btn:nth-child(2){
     background: rgba(241, 50, 50, 0.705);
