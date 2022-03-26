@@ -200,7 +200,8 @@ export default {
                 // window.scroll(top);
                 window.scrollTo({top:0,behavior:'smooth'})
             }
-        }
+        },
+        
     },
     components:{
         ddmenu
