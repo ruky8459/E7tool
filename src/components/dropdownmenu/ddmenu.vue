@@ -69,6 +69,10 @@ export default {
             this.searchQuery = '';
             this.$emit('childData',this.artifact.shortName, this.roleIndex);
         },
+        //重製表單
+        resetForm(){
+            Object.assign(this.$data,this.$options.data.call(this));
+        }
         //fetch API
         // async getData(){
         //     try{
@@ -83,13 +87,13 @@ export default {
     // created(){
     //     this.getData();
     // },
-    watch:{
-        resetCommand: function(){
-            if(this.resetCommand !== null){
-                this.artifact = null;
-            }
-        }
-    }
+    // watch:{
+    //     resetCommand: function(){
+    //         if(this.resetCommand !== null){
+    //             this.artifact = null;
+    //         }
+    //     }
+    // }
 };
 </script>
 

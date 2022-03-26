@@ -35,7 +35,7 @@
                     <input type="number" placeholder="速度" min="100" max="400" step="1" maxlength="3" v-model="roles[index].speed">
                     <input type="number" placeholder="血量(k)" min="5" max="50" step="0.1"  maxlength="4" v-model="roles[index].hp">
                     <!-- <input type="text" placeholder="神器" v-model="roles[index].artic"> -->
-                    <ddmenu v-on:childData="dataFromChild" :roleIdx="index" :resetCommand="resetCommand"/>
+                    <ddmenu ref="ddmenu" v-on:childData="dataFromChild" :roleIdx="index" :resetCommand="resetCommand"/>
 
 
                     <!-- 四選一 -->
@@ -171,22 +171,25 @@ export default {
         copyToBoard: function(){
             let ans = document.getElementById('resultA');
             ans.select();
-            document.execCommand('copy');
-            // alert('已複製內容')
+            // document.execCommand('copy');
+            // 看到上面的劃線了嗎，exeCommand()在未來可能被棄用，雖然一直沒有預告日期。
+            let clip = navigator.clipboard;
+            if(clip === undefined){
+                alert("upgrade your browser to use clipboard feature. 升級你的瀏覽器，才能夠將內容複製到剪貼簿")
+            }else{
+                clip.writeText(ans.value);
+            }
         },
         resetForm: function(){
             Object.assign(this.$data, this.$options.data());
-            // alert('表單已重置，一夜回到解放前')
-            // this.roles = this.$options.data().roles;
         },
         dataFromChild: function(data, idx){
             this.roles[idx].artifact = data;
         },//重製組件-下拉式選單
         sendCommandToChild: function(){
-            // this.resetCommand = 'yes';
-            this.resetCommand.push('1');
-            console.log('reset指令送出');
-            console.log(this.resetCommand);
+            for(let i=0;i<6;i++){
+            this.$refs.ddmenu[i].resetForm();
+            }
         },//手工toast
         showToast: function(toastMessage,state){
             clearTimeout(this.hideTimeout);
