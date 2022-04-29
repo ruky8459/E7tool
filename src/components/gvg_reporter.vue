@@ -170,7 +170,7 @@ export default {
         },//複製textArea內容到剪貼簿
         copyToBoard: function(){
             let ans = document.getElementById('resultA');
-            ans.select();
+            // ans.select();
             // document.execCommand('copy');
             // 看到上面的劃線了嗎，exeCommand()在未來可能被棄用，雖然一直沒有預告日期。
             let clip = navigator.clipboard;
