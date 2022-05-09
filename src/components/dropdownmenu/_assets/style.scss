@@ -54,9 +54,8 @@
         // overflow: scroll;
         // overflow-x: hidden;
         padding: .2rem .5rem;
-        border-radius: .2rem;
-        
-
+        border-radius: .3rem;
+        box-shadow: 4px 4px 7px hsl(0, 0%, 10%);
         .searchbar{
             font-size: 1.2rem;
             width: 100%;
@@ -89,6 +88,10 @@
                     // object-fit: cover;
                     margin-right: 1ch;
                 }
+            }
+            .item.bg-blue >li{
+                background-color: hsl(204, 84%, 38%);
+                color: white;
             }
         }
     }
